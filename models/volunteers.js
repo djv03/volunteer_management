@@ -5,9 +5,9 @@ const students= new mongoose.Schema({
     email:{type:String,  unique:true},
     phone:{type:Number, unique:true},
     age:{type:Number, required:true},
-    role:{type:String},
+    role:{type:String,required:true},
     
    
 },{timestamps:true});
 
-export default mongoose.models.Allstudents ||  mongoose.model('Allstudents', students)
+export default mongoose.models.Volunteers ||  mongoose.model('Volunteers', students)
