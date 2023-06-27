@@ -19,7 +19,7 @@ function Navbar({ logout, user }) {
                 <Link href={'/'}>
                     <li className='  font-bold list-none px-4 transition  hover:text-indigo-500 duration-200 '>Locate us</li>
                 </Link>
-                <Link href={'/'}>
+                <Link href={'/login2'}>
                     <li className='  font-bold list-none px-4 transition  hover:text-indigo-500 duration-200 '>Volunteer</li>
                 </Link>
                 <Link href={'/'}>
@@ -28,19 +28,19 @@ function Navbar({ logout, user }) {
 
             </div>
             <div className="nav-end ">
-                {user.value && <button className='rounded  m-4 p-2 w-24 h-10 ease-in duration-100 font-bold cursor-default '>welcome {user.student_name} </button>
+                {/* {user.value && <button className='rounded  m-4 p-2 w-24 h-10 ease-in duration-100 font-bold cursor-default '>welcome {user.student_name} </button>
                 }
                 {user.value && <Link href={'/'}>
                     <button onClick={logout} className='rounded-lg bg-slate-700 px-6 py-3 mx-3 font-bold  transition  hover:text-indigo-500 duration-200 '>logout </button>
-                </Link>}
+                </Link>} */}
                 {!user.value &&
-                    <Link href={'/login'}>
-                        <button className='rounded bg-slate-400 text-emerald-300  m-4 p-2 w-24 h-10 ease-in duration-100 font-bold hover:bg-slate-600 '>login </button>
+                    <Link href={'/'}>
+                        <button className='rounded bg-slate-400 text-emerald-300  m-4 p-2 w-24 h-10 ease-in duration-100 font-bold hover:bg-slate-600 '>Donate</button>
                     </Link>
                 }
                 {!user.value &&
-                    <Link href={'/signup'}>
-                        <button className='rounded-lg bg-slate-700 px-6 py-3 mx-3 font-bold  transition  hover:text-indigo-500 duration-200 '>Sign up</button>
+                    <Link href={'/dashboard'}>
+                        <button className='rounded-lg bg-slate-700 px-6 py-3 mx-3 font-bold  transition  hover:text-indigo-500 duration-200 '>dashboard</button>
                     </Link>
                 }
             </div>

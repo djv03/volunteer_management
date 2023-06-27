@@ -1,6 +1,7 @@
-const { default: mongoose } = require("mongoose");
+import mongoose from 'mongoose';
 
-const students= new mongoose.Schema({
+
+const volunteers_schema= new mongoose.Schema({
     name:{type:String, required:true},
     email:{type:String,  unique:true},
     phone:{type:Number, unique:true},
@@ -10,4 +11,4 @@ const students= new mongoose.Schema({
    
 },{timestamps:true});
 
-export default mongoose.models.Volunteers ||  mongoose.model('Volunteers', students)
+export default mongoose.models.volunteers_collections ||  mongoose.model('volunteers_collections', volunteers_schema)
