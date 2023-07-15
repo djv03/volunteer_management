@@ -2,7 +2,7 @@ import React, { useState,useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Link from 'next/link';   
-
+import Router, { useRouter } from 'next/router';
 const roles = ['Collection', 'distribute', 'technical', 'other'];
 
 const Login = () => {
@@ -12,7 +12,7 @@ const Login = () => {
   const [age, setAge] = useState('');
   const [role, setRole] = useState('');
 
-   
+  const router = useRouter()
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = { name,email,phone,age,role}
@@ -27,9 +27,9 @@ const Login = () => {
         console.log(res);
         let response = await res.json();
         if (response.sucess) {
-            toast.success('signup successfull! Login now', {
+            toast.success('sucessfully registered as volunteer,we will contact you soon', {
                 position: "top-left",
-                autoClose: 800,
+                autoClose: 2200,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -38,14 +38,16 @@ const Login = () => {
                 theme: "light",
             });
             console.log(response);
-
-
-            setTimeout(() => {
-            }, 500);
+            setName('');
+            setEmail('');
+            setPhone('');
+            setRole('');
+            setAge('');
+            router.push(`${process.env.NEXT_PUBLIC_HOST}/welcome`)
         } else {
             toast.error(`${response.fail}`, {
                 position: "top-left",
-                autoClose: 800,
+                autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -60,7 +62,7 @@ const Login = () => {
     <div className="container mx-auto w-[50vw] mt-12">
       <ToastContainer
                 position="top-left"
-                autoClose={800}
+                autoClose={1200}
                 hideProgressBar={false}
                 newestOnTop={false}
                 closeOnClick
@@ -70,7 +72,7 @@ const Login = () => {
                 pauseOnHover
                 theme="light"
             />
-      <h2 className="text-2xl font-bold mb-4">Be part of India Recycles</h2>
+      <h2 className="text-2xl font-bold mb-4">Be the part of India Recycles:</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="name" className="block font-bold mb-1">

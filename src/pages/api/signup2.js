@@ -8,7 +8,7 @@ async function handler(req, res) {
         let emailexist = await volunteers_collection.findOne({ "email": req.body.email })
         let phoneexist = await volunteers_collection.findOne({ "phone": req.body.phone })
         if (emailexist || phoneexist) {
-            res.status(200).json({ fail: "email or phone already exist, please login" })
+            res.status(200).json({ fail: "email or phone already exist, we will contact you soon" })
         } else {
 
             const { name,email,phone,age,role } = req.body
@@ -20,7 +20,7 @@ async function handler(req, res) {
                 role
             })
             await u.save()
-            res.status(200).json({ sucess: "sucessfully created your account" })
+            res.status(200).json({ sucess: "sucessfully registered!!!" })
         }
     }
     else {
