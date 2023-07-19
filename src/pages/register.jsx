@@ -1,7 +1,7 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Link from 'next/link';   
+import Link from 'next/link';
 import Router, { useRouter } from 'next/router';
 const roles = ['Collection', 'distribute', 'technical', 'other'];
 
@@ -12,66 +12,70 @@ const Login = () => {
   const [age, setAge] = useState('');
   const [role, setRole] = useState('');
 
+  const [isloading, setIsLoading] = useState(false);
   const router = useRouter()
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const data = { name,email,phone,age,role}
-        console.log(data);
-        const res = await fetch(` ${process.env.NEXT_PUBLIC_HOST}/api/signup2`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
-        console.log(res);
-        let response = await res.json();
-        if (response.sucess) {
-            toast.success('sucessfully registered as volunteer,we will contact you soon', {
-                position: "top-left",
-                autoClose: 2200,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-            console.log(response);
-            setName('');
-            setEmail('');
-            setPhone('');
-            setRole('');
-            setAge('');
-            router.push(`${process.env.NEXT_PUBLIC_HOST}/welcome`)
-        } else {
-            toast.error(`${response.fail}`, {
-                position: "top-left",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-        }
-       
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    const data = { name, email, phone, age, role }
+    console.log(data);
+    const res = await fetch(` ${process.env.NEXT_PUBLIC_HOST}/api/signup2`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    console.log(res);
+    let response = await res.json();
+    if (response.sucess) {
+      toast.success('sucessfully registered as volunteer,we will contact you soon', {
+        position: "top-left",
+        autoClose: 2200,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      console.log(response);
+      setName('');
+      setEmail('');
+      setPhone('');
+      setRole('');
+      setAge('');
+      router.push(`${process.env.NEXT_PUBLIC_HOST}/welcome`)
     }
+    else {
+      toast.error(`${response.fail}`, {
+        position: "top-left",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+    setIsLoading(false)
+
+  }
   return (
-    <div className="container mx-auto w-[50vw] mt-12">
+    <div className="  mt-12">
       <ToastContainer
-                position="top-left"
-                autoClose={1200}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-            />
+        position="top-left"
+        autoClose={1200}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <h2 className="text-2xl font-bold mb-4">Be the part of India Recycles:</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
@@ -82,9 +86,9 @@ const Login = () => {
             type="text"
             id="name"
             name="name"
-            className="w-full border border-gray-300 p-2"
+            className="w-full border  border-gray-300 p-2 input"
             value={name}
-            onChange={ (e)=>setName(e.target.value) }
+            onChange={(e) => setName(e.target.value)}
             required
           />
         </div>
@@ -95,9 +99,9 @@ const Login = () => {
           <select
             id="role"
             name="role"
-            className="w-full border border-gray-300 p-2"
+            className="w-full border border-gray-300 p-2 input"
             value={role}
-            onChange={(e)=>setRole(e.target.value)}
+            onChange={(e) => setRole(e.target.value)}
             required
           >
             <option value="">Select Role</option>
@@ -116,9 +120,9 @@ const Login = () => {
             type="number"
             id="age"
             name="age"
-            className="w-full border border-gray-300 p-2"
+            className="w-full border border-gray-300 p-2 input"
             value={age}
-            onChange={(e)=>setAge(e.target.value)}
+            onChange={(e) => setAge(e.target.value)}
             required
           />
         </div>
@@ -130,9 +134,9 @@ const Login = () => {
             type="text"
             id="contact"
             name="contact"
-            className="w-full border border-gray-300 p-2"
+            className="w-full border border-gray-300 p-2 input"
             value={email}
-            onChange={(e)=>setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
@@ -144,9 +148,9 @@ const Login = () => {
             type="text"
             id="contact"
             name="contact"
-            className="w-full border border-gray-300 p-2"
+            className="w-full border border-gray-300 p-2 input"
             value={phone}
-            onChange={(e)=>setPhone(e.target.value)}
+            onChange={(e) => setPhone(e.target.value)}
             required
           />
         </div>
@@ -154,7 +158,7 @@ const Login = () => {
           type="submit"
           className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
         >
-          Submit
+          {isloading ? `Loading...` : `Submit`}
         </button>
       </form>
     </div>

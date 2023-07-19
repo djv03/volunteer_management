@@ -1,0 +1,32 @@
+.navbar{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo{
+    margin: 13px;
+}
+.navlinks{
+    padding: 13px;
+    border-radius: 23px;
+    background-color: rgb(1, 1, 77);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navend{
+    display: flex;
+    justify-self: center;
+    align-items:center ;
+    margin: 13px 4px;
+}
+@media (max-width: 767px){
+    .navbar{
+        flex-direction: column;
+        
+    }
+    .navend{
+        margin: 13px auto;
+    }
+}
